@@ -1,4 +1,101 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenerativeAI, SchemaType } = require('@google/generative-ai');
+
+const schema = {
+  type: SchemaType.OBJECT,
+  properties: {
+    title: { type: SchemaType.STRING },
+    description: { type: SchemaType.STRING },
+    difficulty: { type: SchemaType.STRING },
+    examples: {
+      type: SchemaType.ARRAY,
+      items: {
+        type: SchemaType.OBJECT,
+        properties: {
+          input: { type: SchemaType.STRING },
+          output: { type: SchemaType.STRING },
+          explanation: { type: SchemaType.STRING }
+        },
+        required: ["input", "output", "explanation"]
+      }
+    },
+    constraints: {
+      type: SchemaType.ARRAY,
+      items: { type: SchemaType.STRING }
+    },
+    boilerplateCode: {
+      type: SchemaType.OBJECT,
+      properties: {
+        python: { type: SchemaType.STRING },
+        cpp: { type: SchemaType.STRING },
+        java: { type: SchemaType.STRING }
+      },
+      required: ["python", "cpp", "java"]
+    },
+    testCases: {
+      type: SchemaType.ARRAY,
+      items: {
+        type: SchemaType.OBJECT,
+        properties: {
+          input: { type: SchemaType.STRING },
+          expectedOutput: { type: SchemaType.STRING }
+        },
+        required: ["input", "expectedOutput"]
+      }
+    }
+  },
+  required: ["title", "description", "difficulty", "examples", "constraints", "boilerplateCode", "testCases"]
+};
+
+function cleanGeminiResponse(raw) {
+  let cleaned = raw.trim();
+  // Strip markdown code fences if present
+  if (cleaned.startsWith('```')) {
+    cleaned = cleaned.replace(/^```(?:json)?\n?/i, '');
+    cleaned = cleaned.replace(/\n?```$/, '');
+    cleaned = cleaned.trim();
+  }
+  
+  // Sanitize control characters inside double quoted string literals
+  let result = '';
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < cleaned.length; i++) {
+    const char = cleaned[i];
+    if (escape) {
+      result += char;
+      escape = false;
+      continue;
+    }
+    if (char === '\\') {
+      result += char;
+      escape = true;
+      continue;
+    }
+    if (char === '"') {
+      inString = !inString;
+      result += char;
+      continue;
+    }
+    if (inString) {
+      if (char === '\n') {
+        result += '\\n';
+      } else if (char === '\r') {
+        result += '\\r';
+      } else if (char === '\t') {
+        result += '\\t';
+      } else {
+        const code = char.charCodeAt(0);
+        if (code < 32) {
+          continue; // skip other non-printable control characters
+        }
+        result += char;
+      }
+    } else {
+      result += char;
+    }
+  }
+  return result;
+}
 
 const generateRandomProblem = async (excludeTitles = [], topic = null, difficulty = null) => {
   if (!process.env.GEMINI_API_KEY) {
@@ -7,8 +104,11 @@ const generateRandomProblem = async (excludeTitles = [], topic = null, difficult
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ 
-    model: 'gemini-pro',
-    generationConfig: { responseMimeType: 'application/json' }
+    model: 'gemini-2.5-flash',
+    generationConfig: { 
+      responseMimeType: 'application/json',
+      responseSchema: schema
+    }
   });
 
   const exclusionPrompt = excludeTitles.length > 0 
@@ -62,10 +162,11 @@ Important Rules:
 
   try {
     const result = await model.generateContent(prompt);
-    const raw = result.response.text().trim();
+    const raw = result.response.text();
+    const cleaned = cleanGeminiResponse(raw);
 
     try {
-      const problemData = JSON.parse(raw);
+      const problemData = JSON.parse(cleaned);
       
       // Normalize difficulty to lowercase for MongoDB enum validation
       if (problemData.difficulty) {
@@ -78,7 +179,7 @@ Important Rules:
 
       return problemData;
     } catch (parseErr) {
-      console.error('Gemini JSON Parse Error. Raw response:', raw);
+      console.error('Gemini JSON Parse Error. Cleaned response:', cleaned);
       throw parseErr;
     }
   } catch (error) {
