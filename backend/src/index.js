@@ -36,16 +36,29 @@ const server = http.createServer(app);
 
 // Standard Middleware (Must be before security middleware)
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',') 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()) 
   : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost', 'http://localhost:80'];
+
+const isOriginAllowed = (origin) => {
+  if (!origin) return true;
+  if (
+    allowedOrigins.includes(origin) || 
+    allowedOrigins.includes('*') || 
+    allowedOrigins.includes('all') ||
+    origin.endsWith('.vercel.app') || // Automatically allow all Vercel domains
+    origin.endsWith('.onrender.com')  // Automatically allow all Render domains
+  ) {
+    return true;
+  }
+  return false;
+};
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+    if (isOriginAllowed(origin)) {
       return callback(null, true);
     }
-    return callback(new Error('CORS Policy Breach: Origin not authorized by arena protocols.'), false);
+    return callback(null, false);
   },
   credentials: true
 }));
@@ -73,7 +86,12 @@ app.use(errorHandler);
 // Socket.io Setup
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins.includes('*') ? '*' : allowedOrigins,
+    origin: (origin, callback) => {
+      if (isOriginAllowed(origin)) {
+        return callback(null, true);
+      }
+      return callback(null, false);
+    },
     methods: ['GET', 'POST'],
     credentials: true
   },
