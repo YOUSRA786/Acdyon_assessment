@@ -1,71 +1,120 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light mode */
+:root {
+  --background: #f5f3ff;
+  --foreground: #0f172a;
+  --grid-color: rgba(124, 58, 237, 0.12);
+  --border: rgba(139, 92, 246, 0.15);
+}
+
+/* Dark mode */
+.dark {
+  --background: #07060f;
+  --foreground: #f1f5f9;
+  --grid-color: rgba(139, 92, 246, 0.10);
+  --border: rgba(139, 92, 246, 0.12);
+}
+
 @layer base {
+  html, body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    width: 100%;
+  }
+
   body {
-    @apply bg-[#0b0e14] text-white font-sans antialiased;
-    background-image: 
-      radial-gradient(circle at 50% -20%, #252a41 0%, transparent 50%),
-      radial-gradient(circle at 0% 100%, #1a1e2e 0%, transparent 40%);
+    @apply antialiased transition-colors duration-300;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  code, pre, kbd, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 }
 
-@layer components {
-  .glow-cyan {
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 5px rgba(0, 243, 255, 0.2);
-  }
-  .glow-pink {
-    box-shadow: 0 0 15px rgba(255, 0, 230, 0.3), inset 0 0 5px rgba(255, 0, 230, 0.2);
-  }
-  .text-glow-cyan {
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
-  }
-  .text-glow-pink {
-    text-shadow: 0 0 10px rgba(255, 0, 230, 0.5);
-  }
-  .brawl-card {
-    @apply bg-[#161b22]/80 backdrop-blur-xl border border-white/5 rounded-[2rem] shadow-2xl;
-  }
-  .brawl-button {
-    @apply relative overflow-hidden transition-all duration-300 active:scale-95;
-  }
+/* LAYER 1: Continuous Arena Grid */
+.arena-grid, .hero-grid {
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-@keyframes gradient-x {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* Responsive Scroll Margin Top for Sticky Navbar Clearance */
+#game-hero,
+#match-section,
+#challenges-section,
+#rankings-section,
+#spectator-section,
+#arena-stage {
+  scroll-margin-top: calc(80px + 16px);
 }
 
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 3s ease infinite;
+/* Pure Uniform Vertical Floating Animation (Identical left & right movement) */
+@keyframes subtle-float-1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
 
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+@keyframes subtle-float-2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
-.scanline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, transparent, rgba(0, 243, 255, 0.2), transparent);
-  animation: scanline 4s linear infinite;
+@keyframes subtle-float-3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse-soft-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-float-slow {
+  animation: subtle-float-1 5s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: subtle-float-2 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: subtle-float-3 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-soft-glow 3s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-::-webkit-scrollbar-thumb {
-  background: #2d333b;
-  border-radius: 10px;
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
 }
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #444c56;
+  background: #94a3b8;
 }
