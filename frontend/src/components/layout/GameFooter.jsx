@@ -1,7 +1,10 @@
 import React from 'react';
+import { useShowcase } from '../../context/ShowcaseStateContext';
 import { ArrowUp, Swords } from 'lucide-react';
 
 export const GameFooter = () => {
+  const { openEasterEgg } = useShowcase();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,7 +46,18 @@ export const GameFooter = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
-          <p>© {new Date().getFullYear()} CodeBrawl Multiplayer Arena. All systems active.</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span>© {new Date().getFullYear()} CodeBrawl Multiplayer Arena.</span>
+            <button
+              onClick={openEasterEgg}
+              className="inline-flex items-center gap-1 opacity-50 hover:opacity-100 hover:scale-110 transition-all cursor-pointer font-bold text-emerald-400"
+              title="🐰 Classified: Unlock Recruiter Bunny Console"
+            >
+              <span>🐰</span>
+              <span className="text-[10px] underline underline-offset-2">Secret Bunny</span>
+            </button>
+            <span>• All systems active.</span>
+          </div>
 
           <button
             onClick={scrollToTop}

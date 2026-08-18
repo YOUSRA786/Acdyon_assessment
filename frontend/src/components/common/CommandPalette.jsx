@@ -193,26 +193,18 @@ export const CommandPalette = () => {
       }
     ];
 
-    // Secret Easter Egg Detection Query (Placed in between rather than at top)
-    const normalizedQuery = query.toLowerCase().trim();
-    const isBunnyQuery = [
-      'bunny', 'rabbit', 'white rabbit', 'matrix', 'easter', 'secret', 
-      'classified', 'diagnostics', 'diag', '200 ok', 'loop', 'recruit'
-    ].some(term => normalizedQuery.includes(term));
-
-    if (isBunnyQuery || isBunnyUnlocked) {
-      list.splice(4, 0, {
-        id: 'secret-bunny-mode',
-        category: 'Secret Protocol',
-        title: '[CLASSIFIED] // UNLOCK RECRUITER BUNNY CONSOLE',
-        description: 'Access the hidden matrix terminal & developer telemetry',
-        icon: Sparkles,
-        isSecret: true,
-        action: () => {
-          openEasterEgg();
-        }
-      });
-    }
+    // Secret Easter Egg Item (Placed in the middle of the command list at index 4)
+    list.splice(4, 0, {
+      id: 'secret-bunny-mode',
+      category: 'Secret Protocol',
+      title: '[CLASSIFIED] // UNLOCK RECRUITER BUNNY CONSOLE',
+      description: 'Access the hidden matrix terminal & developer telemetry',
+      icon: Sparkles,
+      isSecret: true,
+      action: () => {
+        openEasterEgg();
+      }
+    });
 
     return list;
   }, [
