@@ -186,20 +186,20 @@ export const GameHero = () => {
           <div className="w-full grid grid-cols-3 gap-3.5 font-mono text-xs">
             <div className="p-3.5 rounded-2xl border dark:bg-[#121826]/90 dark:border-white/10 bg-white/90 border-slate-200 shadow-[0_6px_20px_rgba(6,182,212,0.12)] text-center space-y-1">
               <Zap className="w-4 h-4 text-cyan-500 mx-auto" />
-              <span className="font-black text-base text-slate-900 dark:text-white block">15 Active</span>
-              <span className="text-[10px] text-slate-400 uppercase font-bold">Live Brawls</span>
+              <span className="font-black text-base text-slate-900 dark:text-white block">1v1 Duel</span>
+              <span className="text-[10px] text-slate-400 uppercase font-bold">Simulated Match</span>
             </div>
 
             <div className="p-3.5 rounded-2xl border dark:bg-[#121826]/90 dark:border-white/10 bg-white/90 border-slate-200 shadow-[0_6px_20px_rgba(245,158,11,0.12)] text-center space-y-1">
               <Trophy className="w-4 h-4 text-amber-500 mx-auto" />
               <span className="font-black text-base text-slate-900 dark:text-white block">{userStats.elo}</span>
-              <span className="text-[10px] text-slate-400 uppercase font-bold">Peak ELO</span>
+              <span className="text-[10px] text-slate-400 uppercase font-bold">Demo ELO</span>
             </div>
 
             <div className="p-3.5 rounded-2xl border dark:bg-[#121826]/90 dark:border-white/10 bg-white/90 border-slate-200 shadow-[0_6px_20px_rgba(236,72,153,0.12)] text-center space-y-1">
               <Flame className="w-4 h-4 text-pink-500 mx-auto" />
-              <span className="font-black text-base text-slate-900 dark:text-white block">120+</span>
-              <span className="text-[10px] text-slate-400 uppercase font-bold">Missions</span>
+              <span className="font-black text-base text-slate-900 dark:text-white block">6 Tracks</span>
+              <span className="text-[10px] text-slate-400 uppercase font-bold">Problem Suite</span>
             </div>
           </div>
 

@@ -52,10 +52,10 @@ export const BrawlArena = () => {
     <section id="arena-stage" className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-20">
       {/* State Badge */}
       <div className="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-cyan-500 mb-6">
-        <span>STATE: CODING_IN_PROGRESS // ARENA MATCH</span>
+        <span>STATE: DEMO_ARENA // SIMULATED CODING MATCH</span>
         <span className="text-pink-500 flex items-center gap-1 font-black">
           <Flame className="w-3.5 h-3.5 fill-current" />
-          ROUND 01 / 03
+          DEMO ROUND 01
         </span>
       </div>
 
@@ -167,7 +167,7 @@ export const BrawlArena = () => {
             {isRunningTests ? (
               <div className="py-6 text-center text-slate-400 space-y-1">
                 <p className="text-cyan-400 animate-pulse font-bold">Compiling bytecode & executing test fixtures...</p>
-                <p className="text-[10px] text-slate-500">Zero latency execution sandbox</p>
+                <p className="text-[10px] text-slate-500">Simulated local test harness</p>
               </div>
             ) : testResults ? (
               <div className="space-y-3">
@@ -176,7 +176,7 @@ export const BrawlArena = () => {
                     <CheckCircle2 className="w-4 h-4" />
                     ALL 3 TEST SUITES PASSED
                   </span>
-                  <span className="text-slate-400 text-xs font-mono">Runtime: 38ms • Memory: 14.2MB</span>
+                  <span className="text-slate-400 text-xs font-mono">Sample Runtime: 38ms • Memory: 14.2MB</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-[11px]">
                   {testResults.cases?.map((tc, idx) => (
@@ -197,7 +197,7 @@ export const BrawlArena = () => {
         <div className="flex flex-wrap items-center justify-between px-6 py-4 border-t dark:border-white/10 border-slate-200 gap-4 bg-slate-50/80 dark:bg-black/30">
           {/* Opponent Progress */}
           <div className="flex items-center gap-4 text-xs font-mono">
-            <span className="text-slate-400 font-bold hidden sm:inline">LIVE RIVAL PROGRESS:</span>
+            <span className="text-slate-400 font-bold hidden sm:inline">DEMO OPPONENT PROGRESS:</span>
             <div className="flex items-center gap-4">
               {competitors.slice(0, 3).map((comp) => (
                 <div key={comp.id} className="flex items-center gap-1.5">

@@ -47,7 +47,7 @@ export const PlayerDossierDrawer = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold font-sans tracking-tight">{player.name}</h2>
+                <h2 className="text-xl font-bold font-sans tracking-tight">{player.name} (Sample)</h2>
                 <span className="text-xs font-mono px-2 py-0.5 rounded border dark:bg-black/30 dark:border-white/10 bg-slate-100 border-slate-300 text-slate-500">
                   {player.country}
                 </span>
@@ -58,7 +58,7 @@ export const PlayerDossierDrawer = () => {
                   {player.division}
                 </span>
                 <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">
-                  {player.elo} ELO
+                  {player.elo} DEMO ELO
                 </span>
               </div>
             </div>
@@ -75,15 +75,15 @@ export const PlayerDossierDrawer = () => {
         {/* Quick KPI Bar */}
         <div className="grid grid-cols-3 gap-3 px-6 py-3 border-b dark:border-white/5 border-slate-100 bg-slate-50/50 dark:bg-black/20 text-xs font-mono">
           <div>
-            <span className="text-slate-400 block text-[10px]">WIN RATE</span>
+            <span className="text-slate-400 block text-[10px]">SAMPLE WIN RATE</span>
             <span className="font-bold text-emerald-600 dark:text-emerald-400">{player.winRate}</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-[10px]">MATCHES</span>
+            <span className="text-slate-400 block text-[10px]">DEMO MATCHES</span>
             <span className="font-bold">{player.matchesPlayed} Duels</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-[10px]">WIN STREAK</span>
+            <span className="text-slate-400 block text-[10px]">SAMPLE STREAK</span>
             <span className="font-bold text-amber-500 dark:text-amber-400 flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 fill-current" />
               {player.streak} Matches
@@ -96,7 +96,7 @@ export const PlayerDossierDrawer = () => {
           {/* Bio */}
           {player.bio && (
             <div>
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">Combat Profile</h3>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">Sample Combat Profile</h3>
               <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed p-3.5 rounded-xl border dark:bg-white/5 dark:border-white/10 bg-slate-50 border-slate-200">
                 &ldquo;{player.bio}&rdquo;
               </p>
@@ -107,7 +107,7 @@ export const PlayerDossierDrawer = () => {
           {player.radarStats && (
             <div>
               <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
-                <span>Technical Telemetry</span>
+                <span>Sample Technical Telemetry</span>
                 <span className="text-[10px] text-cyan-500">Benchmark: Grandmaster Standard</span>
               </h3>
               <div className="space-y-3 font-mono text-xs">
@@ -145,7 +145,7 @@ export const PlayerDossierDrawer = () => {
 
           {/* Recent Matches */}
           <div>
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">Recent Duel History</h3>
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">Sample Duel History</h3>
             {player.recentMatches && player.recentMatches.length > 0 ? (
               <div className="space-y-2">
                 {player.recentMatches.map((m) => (

@@ -34,7 +34,7 @@ export const RecruiterModal = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold font-sans tracking-tight">{candidate.name}</h2>
+                <h2 className="text-lg font-bold font-sans tracking-tight">{candidate.name} (Demo)</h2>
                 <span className="text-xs font-mono font-bold px-2 py-0.2 rounded-full border bg-emerald-500/15 text-emerald-500 border-emerald-500/30">
                   {candidate.ratingGrade}
                 </span>
@@ -62,7 +62,7 @@ export const RecruiterModal = () => {
           {/* Skill Breakdown */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-              Candidate Evaluation Telemetry
+              Sample Candidate Evaluation Telemetry
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
               {candidate.metrics.map((m, idx) => (
@@ -83,7 +83,7 @@ export const RecruiterModal = () => {
           {/* Interactive Replay Scrubber */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-              Step-by-Step Keystroke Replay
+              Demonstration Keystroke Replay
             </h3>
             <CodeReplayScrubber />
           </div>

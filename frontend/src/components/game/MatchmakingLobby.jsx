@@ -39,10 +39,10 @@ export const MatchmakingLobby = () => {
     <section id="match-section" className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-20">
       {/* State Label */}
       <div className="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-cyan-500 mb-6">
-        <span>STATE: MATCH_FOUND // 1v1 DUEL LOBBY</span>
+        <span>STATE: DEMO_MATCH_FOUND // 1v1 SIMULATED DUEL LOBBY</span>
         <span className="text-pink-500 flex items-center gap-1">
           <Flame className="w-3.5 h-3.5 fill-current" />
-          SESSION ACTIVE
+          SIMULATED MATCH
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export const MatchmakingLobby = () => {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono text-cyan-500 font-bold uppercase tracking-wider mb-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping" />
-              SESSION ACTIVE
+              DEMO MATCH LOBBY
             </div>
             <h2 className="text-2xl sm:text-3xl font-black font-sans tracking-tight uppercase italic text-slate-950 dark:text-white">
               {activeProblem.title}
@@ -83,10 +83,10 @@ export const MatchmakingLobby = () => {
 
             <div>
               <h3 className="font-black text-lg font-mono tracking-tight uppercase">
-                YOU (DEV_ROOT)
+                YOU (PLAYER 01)
               </h3>
               <p className="text-xs font-mono font-bold text-emerald-500 mt-0.5">
-                STATUS: READY ({userStats.elo} ELO)
+                STATUS: READY (DEMO ELO: {userStats.elo})
               </p>
             </div>
 
@@ -115,10 +115,10 @@ export const MatchmakingLobby = () => {
 
             <div>
               <h3 className="font-black text-lg font-mono tracking-tight uppercase">
-                {currentRival.name}
+                {currentRival.name} (OPPONENT)
               </h3>
               <p className="text-xs font-mono font-bold text-pink-500 mt-0.5">
-                STATUS: {isSearching ? 'SEARCHING...' : currentRival.status} ({currentRival.elo} ELO)
+                STATUS: {isSearching ? 'SEARCHING...' : currentRival.status} ({currentRival.elo} DEMO ELO)
               </p>
             </div>
 
@@ -137,7 +137,7 @@ export const MatchmakingLobby = () => {
         <div className="p-3.5 rounded-2xl dark:bg-black/40 bg-slate-100 border dark:border-white/5 border-slate-200 flex items-center justify-between font-mono text-xs">
           <span className="text-slate-500 dark:text-slate-400 font-bold flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400 inline-block animate-ping" />
-            DEV_ROOT VS {currentRival.name}
+            DEMO MATCH // YOU VS {currentRival.name}
           </span>
           <span className="font-black text-pink-500 tabular-nums">TIME: 03:24</span>
         </div>

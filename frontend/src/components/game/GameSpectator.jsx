@@ -13,10 +13,10 @@ export const GameSpectator = () => {
     <section id="spectator-section" className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-20">
       {/* State Header */}
       <div className="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-emerald-500 mb-6">
-        <span>STATE: OBSERVER_MODE // LIVE TELEMETRY STREAM</span>
+        <span>STATE: OBSERVER_MODE // DEMO REPLAY STREAM</span>
         <span className="text-cyan-400 flex items-center gap-1 font-black">
           <Eye className="w-3.5 h-3.5" />
-          SPECTATING CANDIDATE
+          DEMO SPECTATOR
         </span>
       </div>
 
@@ -31,17 +31,17 @@ export const GameSpectator = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-500 border border-emerald-500/30">
-                  OBSERVING: {candidate.name}
+                  DEMO PROFILE: {candidate.name}
                 </span>
                 <span className="text-xs font-mono font-black text-amber-500">
                   {candidate.ratingGrade}
                 </span>
               </div>
               <h3 className="text-2xl font-black font-sans uppercase tracking-tight text-slate-950 dark:text-white mt-1">
-                Live Solution Playback
+                Candidate Solution Playback (Demo)
               </h3>
               <p className="text-xs text-slate-400 font-mono">
-                Challenge: Two Sum II • Runtime: 38ms (Beats 98.4%)
+                Demonstration Challenge: Two Sum II • Sample Runtime: 38ms
               </p>
             </div>
           </div>

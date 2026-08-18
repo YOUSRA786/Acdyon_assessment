@@ -52,10 +52,10 @@ export const SubmissionSuccessModal = () => {
           </div>
 
           <p className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-emerald-500 mb-1">
-            Status: 200 OK // Verified
+            Status: 200 OK // Verified (Demo)
           </p>
           <h2 className="text-2xl font-black font-sans uppercase tracking-tight">
-            Submission Accepted
+            Submission Verified
           </h2>
           <p className="text-xs text-slate-400 dark:text-slate-400 mt-1 font-mono">
             {lastSubmission.problemTitle} • {lastSubmission.difficulty}
@@ -67,7 +67,7 @@ export const SubmissionSuccessModal = () => {
           {/* XP & Rank Climb Highlight */}
           <div className="grid grid-cols-2 gap-3">
             <div className="p-4 rounded-2xl border text-center dark:bg-white/5 dark:border-white/10 bg-amber-50/50 border-amber-200">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Experience Gained</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Demo Experience</span>
               <div className="text-2xl font-black text-amber-500 dark:text-amber-400 flex items-center justify-center gap-1.5 font-mono">
                 <Sparkles className="w-5 h-5 fill-current" />
                 +{lastSubmission.xpGained} XP
@@ -75,7 +75,7 @@ export const SubmissionSuccessModal = () => {
             </div>
 
             <div className="p-4 rounded-2xl border text-center dark:bg-white/5 dark:border-white/10 bg-cyan-50/50 border-cyan-200">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Arena Rank Shift</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Demo Rank Shift</span>
               <div className="text-2xl font-black text-cyan-600 dark:text-cyan-400 flex items-center justify-center gap-2 font-mono">
                 <span className="text-slate-400 line-through text-lg">#{lastSubmission.oldRank}</span>
                 <ArrowRight className="w-4 h-4 text-emerald-400" />
@@ -87,19 +87,19 @@ export const SubmissionSuccessModal = () => {
           {/* Detailed Execution Breakdown */}
           <div className="p-4 rounded-2xl border font-mono text-xs space-y-2 dark:bg-black/30 dark:border-white/10 bg-slate-50 border-slate-200">
             <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-              <span>Execution Runtime:</span>
-              <span className="font-bold text-emerald-500">{lastSubmission.runtime} (Beats 98.4%)</span>
+              <span>Sample Runtime:</span>
+              <span className="font-bold text-emerald-500">{lastSubmission.runtime}</span>
             </div>
             <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-              <span>Memory Footprint:</span>
-              <span className="font-bold text-emerald-500">{lastSubmission.memory} (Beats 96.1%)</span>
+              <span>Sample Memory:</span>
+              <span className="font-bold text-emerald-500">{lastSubmission.memory}</span>
             </div>
             <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-              <span>ELO Rating Update:</span>
+              <span>Demo ELO Update:</span>
               <span className="font-bold text-cyan-500">+{lastSubmission.eloGained} ELO ({userStats.elo} Total)</span>
             </div>
             <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-              <span>Win Streak:</span>
+              <span>Demo Win Streak:</span>
               <span className="font-bold text-amber-500 flex items-center gap-1">
                 <Flame className="w-3.5 h-3.5 fill-current" />
                 {userStats.streak} Duels

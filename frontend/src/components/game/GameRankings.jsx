@@ -15,10 +15,10 @@ export const GameRankings = () => {
     <section id="rankings-section" className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-6 pb-16 sm:pt-8 sm:pb-20">
       {/* State Header */}
       <div className="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-amber-500 mb-6">
-        <span>STATE: GLOBAL_RANKINGS // ASCENSION LADDER</span>
+        <span>STATE: SAMPLE_RANKINGS // DEMO LEADERBOARD</span>
         <span className="text-cyan-400 flex items-center gap-1">
           <Trophy className="w-3.5 h-3.5" />
-          SEASON 04 ACTIVE
+          SAMPLE LADDER
         </span>
       </div>
 
@@ -28,10 +28,10 @@ export const GameRankings = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b dark:border-white/10 border-slate-200 pb-6 gap-4">
           <div>
             <h2 className="text-3xl sm:text-4xl font-black font-sans tracking-tight uppercase italic text-slate-950 dark:text-white">
-              Arena Leaderboard
+              Sample Leaderboard
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-1">
-              Top gladiators competing in real-time algorithmic brawls.
+              Demonstration of competitive ranking distribution and player dossiers.
             </p>
           </div>
 
@@ -39,8 +39,8 @@ export const GameRankings = () => {
           <div className="p-3.5 rounded-2xl border dark:bg-cyan-950/30 dark:border-cyan-500/40 bg-cyan-50 border-cyan-200 flex items-center gap-3 font-mono text-xs shadow-sm">
             <span className="text-2xl">👨‍💻</span>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 block">YOU (DEV_ROOT)</span>
-              <span className="font-black text-cyan-600 dark:text-cyan-400">#{userStats.rank} • {userStats.elo} ELO</span>
+              <span className="text-[10px] font-bold text-slate-400 block">YOU (SAMPLE PROFILE)</span>
+              <span className="font-black text-cyan-600 dark:text-cyan-400">#{userStats.rank} • {userStats.elo} DEMO ELO</span>
             </div>
             <span className="text-xs font-bold text-amber-500 flex items-center gap-1 pl-2 border-l dark:border-white/10 border-slate-300">
               <Flame className="w-3.5 h-3.5 fill-current" />
@@ -64,7 +64,7 @@ export const GameRankings = () => {
               <h3 className="font-black text-base uppercase">{topThree[1].name}</h3>
               <p className="text-xs font-mono text-slate-400">{topThree[1].handle}</p>
             </div>
-            <p className="font-black text-sm font-mono text-cyan-600 dark:text-cyan-400">{topThree[1].elo} ELO</p>
+            <p className="font-black text-sm font-mono text-cyan-600 dark:text-cyan-400">{topThree[1].elo} DEMO ELO</p>
           </div>
 
           {/* #1 Champion (Grandmaster with Crown) */}
@@ -76,12 +76,12 @@ export const GameRankings = () => {
             <span className="text-5xl block">{topThree[0].avatar}</span>
             <div>
               <span className="text-[10px] font-mono font-black uppercase px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 inline-block mb-1">
-                ARENA CHAMPION
+                SAMPLE #1 RANK
               </span>
               <h3 className="font-black text-xl uppercase tracking-tight">{topThree[0].name}</h3>
               <p className="text-xs font-mono text-slate-400">{topThree[0].handle}</p>
             </div>
-            <p className="font-black text-lg font-mono text-amber-500">{topThree[0].elo} ELO</p>
+            <p className="font-black text-lg font-mono text-amber-500">{topThree[0].elo} DEMO ELO</p>
           </div>
 
           {/* #3 Contender */}
@@ -97,7 +97,7 @@ export const GameRankings = () => {
               <h3 className="font-black text-base uppercase">{topThree[2].name}</h3>
               <p className="text-xs font-mono text-slate-400">{topThree[2].handle}</p>
             </div>
-            <p className="font-black text-sm font-mono text-cyan-600 dark:text-cyan-400">{topThree[2].elo} ELO</p>
+            <p className="font-black text-sm font-mono text-cyan-600 dark:text-cyan-400">{topThree[2].elo} DEMO ELO</p>
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export const GameRankings = () => {
 
                 <div className="flex items-center gap-6">
                   <span className="text-emerald-500 font-bold hidden sm:inline">{player.winRate}</span>
-                  <span className="font-black text-sm text-cyan-600 dark:text-cyan-400">{player.elo} ELO</span>
+                  <span className="font-black text-sm text-cyan-600 dark:text-cyan-400">{player.elo} DEMO ELO</span>
                 </div>
               </div>
             ))}
